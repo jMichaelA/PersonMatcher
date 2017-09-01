@@ -1,3 +1,3 @@
 public interface Algorithm{
-    Boolean match(Person, Person);
+    Boolean match(Person per1, Person per2);
 }

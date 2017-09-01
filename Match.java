@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Match{
     private Person person1;
     private Person person2;
@@ -7,8 +9,7 @@ public class Match{
     public Match(Person per1, Person per2){
         this.person1 = per1;
         this.person2 = per2;
-        isMatch = 0;
-        algorithm = new List<algorithm>();
+        isMatch = false;
         System.out.println("Match Created!\n");
 
     }
