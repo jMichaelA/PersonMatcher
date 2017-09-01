@@ -4,15 +4,32 @@ public class Match{
     private Person person1;
     private Person person2;
     private Boolean isMatch;
+    private int algorithmId;
     private List<Algorithm> algorithm;
 
-    public Match(Person per1, Person per2){
+    public Match(Person per1, Person per2, int algorithmId){
         this.person1 = per1;
         this.person2 = per2;
+        this.algorithmId = algorithmId;
         isMatch = false;
-        System.out.println("Match Created!\n");
-
     }
+
+    public Match(Person per1, Person per2, List<Algorithm> algorithm){
+        this.person1 = per1;
+        this.person2 = per2;
+        this.algorithm = algorithm;
+        isMatch = false;
+    }
+
+    //Getters And Setters
+    public int getAlgorithmId() {
+        return algorithmId;
+    }
+
+    public void setAlgorithmId(int algorithmId) {
+        this.algorithmId = algorithmId;
+    }
+
     public Person getPerson1() {
         return person1;
     }

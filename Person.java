@@ -23,6 +23,29 @@ public class Person{
         this.id = newId;
     }
 
+    public Person(int id, String firstName, String middleName, String lastName, int birthYear, int birthMonth, int birthDay, int stateNumberFile, int ssn, char sex, int newbornScreeningNumber, boolean isTwin, int twinOrder, String nativeCountry, String momFirstName, String momLastName, String momMiddleName, String phone1, String phone2) {
+        this.id = id;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+        this.birthMonth = birthMonth;
+        this.birthDay = birthDay;
+        this.stateNumberFile = stateNumberFile;
+        this.ssn = ssn;
+        this.sex = sex;
+        this.newbornScreeningNumber = newbornScreeningNumber;
+        this.isTwin = isTwin;
+        this.twinOrder = twinOrder;
+        this.nativeCountry = nativeCountry;
+        this.momFirstName = momFirstName;
+        this.momLastName = momLastName;
+        this.momMiddleName = momMiddleName;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+    }
+
+    //Getters And Setters
     public int getId() {
         return id;
     }
