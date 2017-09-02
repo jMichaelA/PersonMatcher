@@ -4,30 +4,39 @@ public class Match{
     private Person person1;
     private Person person2;
     private Boolean isMatch;
-    private int algorithmId;
-    private List<Algorithm> algorithm;
+    private Algorithm algorithm;
+    private List<Algorithm> algorithms;
 
-    public Match(Person per1, Person per2, int algorithmId){
-        this.person1 = per1;
-        this.person2 = per2;
-        this.algorithmId = algorithmId;
-        isMatch = false;
-    }
-
-    public Match(Person per1, Person per2, List<Algorithm> algorithm){
+    public Match(Person per1, Person per2, Algorithm algorithm){
         this.person1 = per1;
         this.person2 = per2;
         this.algorithm = algorithm;
         isMatch = false;
     }
 
-    //Getters And Setters
-    public int getAlgorithmId() {
-        return algorithmId;
+    public Match(Person per1, Person per2, List<Algorithm> algorithms){
+        this.person1 = per1;
+        this.person2 = per2;
+        this.algorithms = algorithms;
+        isMatch = false;
     }
 
-    public void setAlgorithmId(int algorithmId) {
-        this.algorithmId = algorithmId;
+    public String outputId(){
+        return isMatch ? person1.outputId() + ", " + person2.outputId() : "No Match";
+    }
+
+    public String output(){
+        return isMatch ? "Match:\n" + person1.output() + "\n" + person2.output() + "\n" : "No Match";
+    }
+
+    // Getters And Setters
+
+    public Algorithm getAlgorithm() {
+        return algorithm;
+    }
+
+    public void setAlgorithm(Algorithm algorithm) {
+        this.algorithm = algorithm;
     }
 
     public Person getPerson1() {
@@ -54,11 +63,11 @@ public class Match{
         isMatch = match;
     }
 
-    public List<Algorithm> getAlgorithm() {
-        return algorithm;
+    public List<Algorithm> getAlgorithms() {
+        return algorithms;
     }
 
-    public void setAlgorithm(List<Algorithm> algorithm) {
-        this.algorithm = algorithm;
+    public void setAlgorithms(List<Algorithm> algorithms) {
+        this.algorithms = algorithms;
     }
 }

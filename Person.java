@@ -1,17 +1,20 @@
+import java.util.List;
+import java.util.Arrays;
+
 public class Person{
     private int id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
     private int birthYear;
     private int birthMonth;
     private int birthDay;
     private int stateNumberFile;
     private int ssn;
-    private char sex;
     private int newbornScreeningNumber;
-    private boolean isTwin;
     private int twinOrder;
+    private boolean isTwin;
+    private String sex;
+    private String firstName;
+    private String middleName;
+    private String lastName;
     private String nativeCountry;
     private String momFirstName;
     private String momLastName;
@@ -23,7 +26,14 @@ public class Person{
         this.id = newId;
     }
 
-    public Person(int id, String firstName, String middleName, String lastName, int birthYear, int birthMonth, int birthDay, int stateNumberFile, int ssn, char sex, int newbornScreeningNumber, boolean isTwin, int twinOrder, String nativeCountry, String momFirstName, String momLastName, String momMiddleName, String phone1, String phone2) {
+    public Person(
+            int     id,      String firstName,      String middleName, 
+            String lastName, int birthYear,         int birthMonth, 
+            int birthDay,    int stateNumberFile,   int ssn, 
+            String sex,      boolean isTwin,        int newbornScreeningNumber,
+            int twinOrder,   String nativeCountry,  String phone1,   
+            String phone2,   String momFirstName,   String momLastName, 
+            String momMiddleName) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -45,7 +55,36 @@ public class Person{
         this.phone2 = phone2;
     }
 
-    //Getters And Setters
+    // identifying functions
+
+    public List<Integer> identifyNum(){
+        return Arrays.asList(ssn, stateNumberFile, newbornScreeningNumber, birthYear, birthMonth, birthDay);
+    }
+
+    public List<String> identifyName(){
+        return Arrays.asList(firstName, middleName, lastName);
+    }
+
+    public List<String> info(){
+        return Arrays.asList(sex, nativeCountry, momFirstName, momLastName, momMiddleName);
+    }
+
+    public List<String> tempInfo(){
+        return Arrays.asList(phone1, phone2);
+    }
+
+    public String outputId(){
+        return String.valueOf(id);
+    }
+
+    public String output(){
+        return "Id = " + String.valueOf(id) + ", Name = " + firstName + " " + middleName
+                + " " + lastName + ", BirthDate = " + String.valueOf(birthMonth) + "/" + String.valueOf(birthDay) + "/" 
+                + String.valueOf(birthYear);
+    }
+
+    // Getters And Setters
+
     public int getId() {
         return id;
     }
@@ -118,11 +157,11 @@ public class Person{
         this.ssn = ssn;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
