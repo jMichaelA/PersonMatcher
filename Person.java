@@ -2,14 +2,14 @@ import java.util.List;
 import java.util.Arrays;
 
 public class Person{
-    private int id;
-    private int birthYear;
-    private int birthMonth;
-    private int birthDay;
-    private int stateNumberFile;
-    private int ssn;
-    private int newbornScreeningNumber;
-    private int twinOrder;
+    private Integer id;
+    private Integer birthYear;
+    private Integer birthMonth;
+    private Integer birthDay;
+    private Integer stateNumberFile;
+    private Integer ssn;
+    private Integer newbornScreeningNumber;
+    private Integer twinOrder;
     private boolean isTwin;
     private String sex;
     private String firstName;
@@ -22,17 +22,17 @@ public class Person{
     private String phone1;
     private String phone2;
 
-    public Person(int newId){
+    public Person(Integer newId){
         this.id = newId;
     }
 
     public Person(
-            int     id,      String firstName,      String middleName, 
-            String lastName, int birthYear,         int birthMonth, 
-            int birthDay,    int stateNumberFile,   int ssn, 
-            String sex,      boolean isTwin,        int newbornScreeningNumber,
-            int twinOrder,   String nativeCountry,  String phone1,   
-            String phone2,   String momFirstName,   String momLastName, 
+            Integer     id,      String firstName,          String middleName, 
+            String lastName,     Integer birthYear,         Integer birthMonth, 
+            Integer birthDay,    Integer stateNumberFile,   Integer ssn, 
+            String sex,          boolean isTwin,            Integer newbornScreeningNumber,
+            Integer twinOrder,   String nativeCountry,      String phone1,   
+            String phone2,       String momFirstName,       String momLastName, 
             String momMiddleName) {
         this.id = id;
         this.firstName = firstName;
@@ -66,7 +66,7 @@ public class Person{
     }
 
     public List<String> info(){
-        return Arrays.asList(sex, nativeCountry, momFirstName, momLastName, momMiddleName);
+        return Arrays.asList(sex, nativeCountry, momFirstName, momLastName, momMiddleName, firstName, middleName, lastName);
     }
 
     public List<String> tempInfo(){
@@ -85,11 +85,11 @@ public class Person{
 
     // Getters And Setters
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -117,43 +117,43 @@ public class Person{
         this.lastName = lastName;
     }
 
-    public int getBirthYear() {
+    public Integer getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(Integer birthYear) {
         this.birthYear = birthYear;
     }
 
-    public int getBirthMonth() {
+    public Integer getBirthMonth() {
         return birthMonth;
     }
 
-    public void setBirthMonth(int birthMonth) {
+    public void setBirthMonth(Integer birthMonth) {
         this.birthMonth = birthMonth;
     }
 
-    public int getBirthDay() {
+    public Integer getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(int birthDay) {
+    public void setBirthDay(Integer birthDay) {
         this.birthDay = birthDay;
     }
 
-    public int getStateNumberFile() {
+    public Integer getStateNumberFile() {
         return stateNumberFile;
     }
 
-    public void setStateNumberFile(int stateNumberFile) {
+    public void setStateNumberFile(Integer stateNumberFile) {
         this.stateNumberFile = stateNumberFile;
     }
 
-    public int getSsn() {
+    public Integer getSsn() {
         return ssn;
     }
 
-    public void setSsn(int ssn) {
+    public void setSsn(Integer ssn) {
         this.ssn = ssn;
     }
 
@@ -165,11 +165,11 @@ public class Person{
         this.sex = sex;
     }
 
-    public int getNewbornScreeningNumber() {
+    public Integer getNewbornScreeningNumber() {
         return newbornScreeningNumber;
     }
 
-    public void setNewbornScreeningNumber(int newbornScreeningNumber) {
+    public void setNewbornScreeningNumber(Integer newbornScreeningNumber) {
         this.newbornScreeningNumber = newbornScreeningNumber;
     }
 
@@ -181,11 +181,11 @@ public class Person{
         isTwin = twin;
     }
 
-    public int getTwinOrder() {
+    public Integer getTwinOrder() {
         return twinOrder;
     }
 
-    public void setTwinOrder(int twinOrder) {
+    public void setTwinOrder(Integer twinOrder) {
         this.twinOrder = twinOrder;
     }
 

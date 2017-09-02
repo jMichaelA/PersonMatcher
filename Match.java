@@ -29,6 +29,10 @@ public class Match{
         return isMatch ? "Match:\n" + person1.output() + "\n" + person2.output() + "\n" : "No Match";
     }
 
+    public void runAlgorithm(){
+        isMatch = algorithm.match(person1, person2);
+    }
+
     // Getters And Setters
 
     public Algorithm getAlgorithm() {
