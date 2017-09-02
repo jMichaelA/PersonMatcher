@@ -17,7 +17,7 @@ public class Main{
                                  "944-748-4587","mom",      "mom",
                                  "mom");
         Person per3 = new Person(3);
-        NameIdent a = new NameIdent();
+        IdentByConfidence a = new IdentByConfidence();
         Match match = new Match(per1, per2, a);
         match.runAlgorithm();
         // match.setMatch(true);
