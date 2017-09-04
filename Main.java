@@ -18,7 +18,8 @@ public class Main{
                                  "mom");
         Person per3 = new Person(3);
         IdentByConfidence a = new IdentByConfidence();
-        Match match = new Match(per1, per2, a);
+        StrikeOut b = new StrikeOut();
+        Match match = new Match(per1, per2, b);
         match.runAlgorithm();
         // match.setMatch(true);
         System.out.println(match.outputId());

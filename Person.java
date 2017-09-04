@@ -10,7 +10,7 @@ public class Person{
     private Integer ssn;
     private Integer newbornScreeningNumber;
     private Integer twinOrder;
-    private boolean isTwin;
+    private Boolean isTwin;
     private String sex;
     private String firstName;
     private String middleName;
@@ -30,7 +30,7 @@ public class Person{
             Integer     id,      String firstName,          String middleName, 
             String lastName,     Integer birthYear,         Integer birthMonth, 
             Integer birthDay,    Integer stateNumberFile,   Integer ssn, 
-            String sex,          boolean isTwin,            Integer newbornScreeningNumber,
+            String sex,          Boolean isTwin,            Integer newbornScreeningNumber,
             Integer twinOrder,   String nativeCountry,      String phone1,   
             String phone2,       String momFirstName,       String momLastName, 
             String momMiddleName) {
@@ -173,11 +173,11 @@ public class Person{
         this.newbornScreeningNumber = newbornScreeningNumber;
     }
 
-    public boolean isTwin() {
+    public Boolean isTwin() {
         return isTwin;
     }
 
-    public void setTwin(boolean twin) {
+    public void setTwin(Boolean twin) {
         isTwin = twin;
     }
 
