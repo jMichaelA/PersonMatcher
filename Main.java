@@ -19,7 +19,7 @@ public class Main{
         Person per3 = new Person(3);
         IdentByConfidence a = new IdentByConfidence();
         StrikeOut b = new StrikeOut();
-        Match match = new Match(per1, per2, b);
+        Match match = new Match(per1, per2, a);
         match.runAlgorithm();
         // match.setMatch(true);
         System.out.println(match.outputId());

@@ -21,16 +21,13 @@ public class IdentByConfidence implements Algorithm {
         return false;
     }
 
-    private void matchByIdent(Person per1, Person per2){
-        List<Integer> per1Ints = per1.identifyNum();
-        List<Integer> per2Ints = per2.identifyNum();
-
+    private void compare(List<?> per1, List<?> per2){
         int size = 0;
         int sum = 0;
 
-        for(int i = 0; i < per1Ints.size(); ++i){
-            if(per1Ints.get(i) != null && per2Ints.get(i) != null){
-                if(per2Ints.get(i).equals(per1Ints.get(i))){
+        for(int i = 0; i < per1.size(); ++i){
+            if(per1.get(i) != null && per2.get(i) != null){
+                if(per2.get(i).equals(per1.get(i))){
                     ++sum;
                 }
                 ++size;
@@ -39,23 +36,18 @@ public class IdentByConfidence implements Algorithm {
         pushConf(sum, size);
     }
 
+    private void matchByIdent(Person per1, Person per2){
+        List<Integer> per1Ints = per1.identifyNum();
+        List<Integer> per2Ints = per2.identifyNum();
+
+        compare(per1Ints, per2Ints);
+    }
+
     private void matchByInfo(Person per1, Person per2){
         List<String> per1Info = per1.info();
         List<String> per2Info = per2.info();
 
-        int size = 0;
-        int sum = 0;
-
-        for(int i = 0; i < per1Info.size(); ++i){
-            if(per1Info.get(i) != null && per2Info.get(i) != null){
-                if(per2Info.get(i).equals(per1Info.get(i))){
-                    ++sum;
-                }
-                ++size;
-            }
-        }
-
-        pushConf(sum, size);
+        compare(per1Info, per2Info);
     }    
 
     private void calConfidence(){
