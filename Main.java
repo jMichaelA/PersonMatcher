@@ -10,7 +10,7 @@ public class Main{
                                  "mom");
         Person per2 = new Person(
                                  2,             "irst",    "middle", 
-                                 "last",        122,       12, 
+                                 "last",        1202,       12, 
                                  15,            1232439,    4949, 
                                  "male",        true,       392002,
                                  2,             "Mexico",   "930-293-3448",
@@ -19,7 +19,8 @@ public class Main{
         Person per3 = new Person(3);
         IdentByConfidence a = new IdentByConfidence();
         StrikeOut b = new StrikeOut();
-        Match match = new Match(per1, per2, a);
+        ScoreSystem c = new ScoreSystem();
+        Match match = new Match(per1, per2, c);
         match.runAlgorithm();
         // match.setMatch(true);
         System.out.println(match.outputId());

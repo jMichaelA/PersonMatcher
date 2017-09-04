@@ -1,12 +1,20 @@
 import java.util.List;
 import java.util.ArrayList;
 
+// TODO create cli for user to specify the confidence level
 public class IdentByConfidence implements Algorithm {
     private List<Double> confidenceList;
     private Double confidence;
+    private double confidenceLevel;
     
     public IdentByConfidence(){
         confidenceList = new ArrayList<Double>();
+        confidenceLevel = .75;
+    }
+
+    public IdentByConfidence(double confidenceLevel){
+        confidenceList = new ArrayList<Double>();
+        this.confidenceLevel = confidenceLevel;
     }
 
     @Override
@@ -15,7 +23,7 @@ public class IdentByConfidence implements Algorithm {
         matchByInfo(per1, per2);
         calConfidence();
         
-        if(confidence > 0.75){
+        if(confidence > confidenceLevel){
             return true;
         }
         return false;
