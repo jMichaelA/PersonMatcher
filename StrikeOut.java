@@ -61,4 +61,8 @@ public class StrikeOut implements Algorithm {
     public int getStrikes(){
         return this.strikes;
     }
+
+    public int getNonNullVals(){
+        return this.nonNullVals;
+    }
 }
