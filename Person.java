@@ -2,39 +2,44 @@ import java.util.List;
 import java.util.Arrays;
 
 public class Person{
-    private Integer id;
+    private Integer objectId;
     private Integer birthYear;
     private Integer birthMonth;
     private Integer birthDay;
     private Integer stateNumberFile;
-    private Integer ssn;
-    private Integer newbornScreeningNumber;
-    private Integer twinOrder;
-    private Boolean isTwin;
-    private String sex;
+    private Integer socialSecurityNumber;
+    private Integer birthOrder;
+    private String newbornScreeningNumber;
+    private String isPartOfMultipleBirth;
+    private String gender;
     private String firstName;
     private String middleName;
     private String lastName;
-    private String nativeCountry;
-    private String momFirstName;
-    private String momLastName;
-    private String momMiddleName;
+    private String birthCounty;
+    private String motherFirstName;
+    private String motherLastName;
+    private String motherMiddleName;
     private String phone1;
     private String phone2;
+    private String stateFileNumber;
+
+    public Person(){
+
+    }
 
     public Person(Integer newId){
-        this.id = newId;
+        this.objectId = newId;
     }
 
     public Person(
-            Integer     id,      String firstName,          String middleName, 
-            String lastName,     Integer birthYear,         Integer birthMonth, 
-            Integer birthDay,    Integer stateNumberFile,   Integer ssn, 
-            String sex,          Boolean isTwin,            Integer newbornScreeningNumber,
-            Integer twinOrder,   String nativeCountry,      String phone1,   
-            String phone2,       String momFirstName,       String momLastName, 
-            String momMiddleName) {
-        this.id = id;
+            Integer objectId,    String firstName,              String middleName, 
+            String lastName,     Integer birthYear,             Integer birthMonth, 
+            Integer birthDay,    Integer stateNumberFile,       Integer socialSecurityNumber, 
+            String gender,       String isPartOfMultipleBirth,  String newbornScreeningNumber,
+            Integer birthOrder,   String birthCounty,            String phone1,   
+            String phone2,       String motherFirstName,        String motherLastName,
+            String motherMiddleName) {
+        this.objectId = objectId;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -42,15 +47,45 @@ public class Person{
         this.birthMonth = birthMonth;
         this.birthDay = birthDay;
         this.stateNumberFile = stateNumberFile;
-        this.ssn = ssn;
-        this.sex = sex;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.gender = gender;
         this.newbornScreeningNumber = newbornScreeningNumber;
-        this.isTwin = isTwin;
-        this.twinOrder = twinOrder;
-        this.nativeCountry = nativeCountry;
-        this.momFirstName = momFirstName;
-        this.momLastName = momLastName;
-        this.momMiddleName = momMiddleName;
+        this.isPartOfMultipleBirth = isPartOfMultipleBirth;
+        this.birthOrder = birthOrder;
+        this.birthCounty = birthCounty;
+        this.motherFirstName = motherFirstName;
+        this.motherLastName = motherLastName;
+        this.motherMiddleName = motherMiddleName;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+    }
+
+        public Person(
+            Integer objectId,    String firstName,              String middleName, 
+            String lastName,     Integer birthYear,             Integer birthMonth, 
+            Integer birthDay,    String stateFileNumber,        Integer socialSecurityNumber,
+            String gender,       String isPartOfMultipleBirth,  String newbornScreeningNumber,
+            Integer birthOrder,   String birthCounty,            String phone1,   
+            String phone2,       String motherFirstName,        String motherLastName,
+            String motherMiddleName) {
+        this.objectId = objectId;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+        this.birthMonth = birthMonth;
+        this.birthDay = birthDay;
+        this.stateFileNumber = stateFileNumber;
+        this.stateNumberFile = Integer.parseInt(stateFileNumber.replaceAll("\\s+",""));
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.gender = gender;
+        this.newbornScreeningNumber = newbornScreeningNumber;
+        this.isPartOfMultipleBirth = isPartOfMultipleBirth;
+        this.birthOrder = birthOrder;
+        this.birthCounty = birthCounty;
+        this.motherFirstName = motherFirstName;
+        this.motherLastName = motherLastName;
+        this.motherMiddleName = motherMiddleName;
         this.phone1 = phone1;
         this.phone2 = phone2;
     }
@@ -58,7 +93,7 @@ public class Person{
     // identifying functions
 
     public List<Integer> identifyNum(){
-        return Arrays.asList(ssn, stateNumberFile, newbornScreeningNumber, birthYear, birthMonth, birthDay);
+        return Arrays.asList(socialSecurityNumber, stateNumberFile, birthYear, birthMonth, birthDay);
     }
 
     public List<String> identifyName(){
@@ -66,7 +101,7 @@ public class Person{
     }
 
     public List<String> info(){
-        return Arrays.asList(sex, nativeCountry, momFirstName, momLastName, momMiddleName, firstName, middleName, lastName);
+        return Arrays.asList(gender, birthCounty, motherFirstName, motherLastName, motherMiddleName, firstName, middleName, lastName, newbornScreeningNumber);
     }
 
     public List<String> tempInfo(){
@@ -74,23 +109,35 @@ public class Person{
     }
 
     public String outputId(){
-        return String.valueOf(id);
+        return String.valueOf(objectId);
     }
 
     public String output(){
-        return "Id = " + String.valueOf(id) + ", Name = " + firstName + " " + middleName
+        return "Id = " + String.valueOf(objectId) + ", Name = " + firstName + " " + middleName
                 + " " + lastName + ", BirthDate = " + String.valueOf(birthMonth) + "/" + String.valueOf(birthDay) + "/" 
                 + String.valueOf(birthYear);
     }
 
-    // Getters And Setters
-
-    public Integer getId() {
-        return id;
+    public Boolean isTwin(){
+        if(isPartOfMultipleBirth == null){
+            return false;
+        }
+        
+        if(isPartOfMultipleBirth.equals("t") || isPartOfMultipleBirth.equals("T")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    // Getters And Setters
+
+    public Integer getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(Integer objectId) {
+        this.objectId = objectId;
     }
 
     public String getFirstName() {
@@ -149,76 +196,82 @@ public class Person{
         this.stateNumberFile = stateNumberFile;
     }
 
-    public Integer getSsn() {
-        return ssn;
+    public void setStateNumberFile() {
+        if(stateFileNumber != null) {
+            this.stateNumberFile = Integer.parseInt(stateFileNumber.replaceAll("\\s+", ""));
+        }
     }
 
-    public void setSsn(Integer ssn) {
-        this.ssn = ssn;
+    public Integer getSocialSecurityNumber() {
+        return socialSecurityNumber;
     }
 
-    public String getSex() {
-        return sex;
+    public void setSocialSecurityNumber(Integer socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public String getGender() {
+        return gender;
     }
 
-    public Integer getNewbornScreeningNumber() {
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getNewbornScreeningNumber() {
         return newbornScreeningNumber;
     }
 
-    public void setNewbornScreeningNumber(Integer newbornScreeningNumber) {
+    public void setNewbornScreeningNumber(String newbornScreeningNumber) {
         this.newbornScreeningNumber = newbornScreeningNumber;
     }
 
-    public Boolean isTwin() {
-        return isTwin;
+    public String isPartOfMultipleBirth() {
+        return isPartOfMultipleBirth;
     }
 
-    public void setTwin(Boolean twin) {
-        isTwin = twin;
+    public void setIsPartOfMultipleBirth(String twin) {
+        isPartOfMultipleBirth = twin;
     }
 
-    public Integer getTwinOrder() {
-        return twinOrder;
+    public Integer getBirthOrder() {
+        return birthOrder;
     }
 
-    public void setTwinOrder(Integer twinOrder) {
-        this.twinOrder = twinOrder;
+    public void setBirthOrder(Integer birthOrder) {
+        this.birthOrder = birthOrder;
     }
 
     public String getNativeCountry() {
-        return nativeCountry;
+        return birthCounty;
     }
 
-    public void setNativeCountry(String nativeCountry) {
-        this.nativeCountry = nativeCountry;
+    public void setNativeCountry(String birthCounty) {
+        this.birthCounty = birthCounty;
     }
 
-    public String getMomFirstName() {
-        return momFirstName;
+    public String getMotherFirstName() {
+        return motherFirstName;
     }
 
-    public void setMomFirstName(String momFirstName) {
-        this.momFirstName = momFirstName;
+    public void setMotherFirstName(String motherFirstName) {
+        this.motherFirstName = motherFirstName;
     }
 
-    public String getMomLastName() {
-        return momLastName;
+    public String getMotherLastName() {
+        return motherLastName;
     }
 
-    public void setMomLastName(String momLastName) {
-        this.momLastName = momLastName;
+    public void setMotherLastName(String motherLastName) {
+        this.motherLastName = motherLastName;
     }
 
-    public String getMomMiddleName() {
-        return momMiddleName;
+    public String getMotherMiddleName() {
+        return motherMiddleName;
     }
 
-    public void setMomMiddleName(String momMiddleName) {
-        this.momMiddleName = momMiddleName;
+    public void setMotherMiddleName(String motherMiddleName) {
+        this.motherMiddleName = motherMiddleName;
     }
 
     public String getPhone1() {
@@ -235,6 +288,19 @@ public class Person{
 
     public void setPhone2(String phone2) {
         this.phone2 = phone2;
+    }
+
+    public String getStateFileNumber(){
+        return stateFileNumber;
+    }
+
+    public void setStateFileNumber(String stateFileNumber){
+        if(stateFileNumber == null){
+            return;
+        }
+        this.stateFileNumber = stateFileNumber;
+        String temp = stateFileNumber.replaceAll("\\s+","");
+        stateNumberFile = Integer.parseInt(temp);
     }
     
 }
