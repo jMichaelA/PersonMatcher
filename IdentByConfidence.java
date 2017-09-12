@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
 
-// TODO create cli for user to specify the confidence level
 public class IdentByConfidence implements Algorithm {
     private List<Double> confidenceList;
     private Double confidence;
