@@ -37,6 +37,7 @@ public class Main{
 
         JsonParser jp = new JsonParser();
         List<Person> p = jp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/JSON_PersonTestSet_3.json");
+//        List<Person> p = jp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/json_temp.json");
         if(p != null){
             for (Person i: p) {
 //                System.out.println(i.output());
@@ -49,13 +50,16 @@ public class Main{
         }
 
         XmlParser xp = new XmlParser();
-        List<Person> p2 = xp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/XML_PersonTestSet_3.xml");
+        List<Person> p2 = xp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/XML_PersonTestSet_1.xml");
 
         if(p != null){
             for (Person i: p2){
-                System.out.println(i.output());
+//                System.out.println(i.output());
                 i.setStateNumberFile();
             }
         }
+
+        PersonCollection personCollection = new PersonCollection(p, b);
+        personCollection.runMatches();
     }
 }

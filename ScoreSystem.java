@@ -12,7 +12,7 @@ public class ScoreSystem implements Algorithm {
         primaryMultiplier = 3;
         secondaryMultiplier = 2;
         tertiaryMultiplier = 1;
-        errorScore = 2*secondaryMultiplier + tertiaryMultiplier;
+        errorScore = 2*secondaryMultiplier + 2*tertiaryMultiplier;
     }
 
     public ScoreSystem(int primaryMultiplier, int secondaryMultiplier, int tertiaryMultiplier, int errorScore) {
@@ -26,7 +26,7 @@ public class ScoreSystem implements Algorithm {
         this.primaryMultiplier = primaryMultiplier;
         this.secondaryMultiplier = secondaryMultiplier;
         this.tertiaryMultiplier = tertiaryMultiplier;
-        errorScore = 2*secondaryMultiplier + tertiaryMultiplier;
+        errorScore = 2*secondaryMultiplier + 2*tertiaryMultiplier;
     }
 
     @Override

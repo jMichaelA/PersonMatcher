@@ -17,7 +17,6 @@ public class StrikeOut implements Algorithm {
     @Override
     public Boolean match(Person per1, Person per2){
         compareValues(per1, per2);
-
         if(strikes < 3 && nonNullVals > 3){
             return true;
         }
