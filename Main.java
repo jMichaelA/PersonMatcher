@@ -1,27 +1,101 @@
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class Main{
     public static void main(String[] args){
+        Integer algorithmInt;
+        String algoritmString;
+        Parameter parameter = new Parameter();
 
-        Parameter parameter = new Parameter("/home/jacob/gasp/output.txt", "/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/JSON_PersonTestSet_3.json", 2);
+        try {
+            algorithmInt = Integer.parseInt(args[0]);
+            parameter.setAlgorId(algorithmInt);
+        }
+        catch( Exception e ) {
+            algoritmString = args[0];
+            parameter.setAlgorName(algoritmString);
+        }
+
+        parameter.setInputFile(args[1]);
+        if(args.length > 2){
+            parameter.setOutputToFile(args[2]);
+        }
+
         parameter.checkParams();
-        System.out.println(parameter.getError());
+        if(parameter.getError() != null){
+            System.out.println(parameter.getError());
+            return;
+        }
 
-        // algorithms
-        IdentByConfidence a = new IdentByConfidence();
-        StrikeOut b = new StrikeOut();
-        ScoreSystem c = new ScoreSystem();
+        String inputType = parameter.getInputType();
+        if(parameter.getError() != null){
+            System.out.println(parameter.getError());
+            return;
+        }
 
+        Parser parser;
 
-        JsonParser jp = new JsonParser();
-        List<Person> p = jp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/JSON_PersonTestSet_3.json");
+        if(inputType.toLowerCase().equals("json")){
+            parser = new JsonParser();
+        }else if(inputType.toLowerCase().equals("xml")){
+            parser = new XmlParser();
+        }else{
+            System.out.println("Sorry we have no parser for this type of file");
+            return;
+        }
 
-        XmlParser xp = new XmlParser();
-        List<Person> p2 = xp.parse("/home/jacob/school/fall_2017/oo/cs5700f17-shared/hw1/Data/XML_PersonTestSet_1.xml");
-
-        PersonCollection personCollection = new PersonCollection(p, b);
+        List<Person> people = parser.parse(parameter.getInputFile());
+        PersonCollection personCollection = new PersonCollection(people, parameter.getAlgorithm());
         personCollection.runMatches();
 
+        List<Match> matches = personCollection.getMatch();
+
+        // initialize file writer
+        BufferedWriter fileBuff = null;
+        FileWriter file = null;
+
+        if(parameter.getOutputToFile() != null) {
+            try {
+                file = new FileWriter(parameter.getOutputToFile());
+                fileBuff = new BufferedWriter(file);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // loop through matches and output accordingly
+        for (Match match : matches) {
+            output(match, fileBuff);
+        }
+
+        // close file writers
+        if(parameter.getOutputToFile() != null) {
+            try {
+                if (fileBuff != null) {
+                    fileBuff.close();
+                }
+
+                if (file != null) {
+                    file.close();
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private static void output(Match match, BufferedWriter outputFile){
+        if(outputFile == null){
+            System.out.println(match.output());
+        }else{
+            try {
+                outputFile.write(match.outputId() + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

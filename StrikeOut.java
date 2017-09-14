@@ -17,7 +17,7 @@ public class StrikeOut implements Algorithm {
     @Override
     public Boolean match(Person per1, Person per2){
         compareValues(per1, per2);
-        if(strikes < 3 && nonNullVals > 3){
+        if(strikes < 3 && nonNullVals > 4){
             return true;
         }
         return false;
@@ -29,12 +29,12 @@ public class StrikeOut implements Algorithm {
         List<Integer> per2Ints = per2.identifyNum();
         List<String> per1Info = per1.info();
         List<String> per2Info = per2.info();
-        List<String> per1TempInfo = per1.tempInfo();
-        List<String> per2TempInfo = per2.tempInfo();
+//        List<String> per1TempInfo = per1.tempInfo();
+//        List<String> per2TempInfo = per2.tempInfo();
 
         compare(per1Ints, per2Ints);
         compare(per1Info, per2Info);
-        compare(per1TempInfo, per2TempInfo);
+//        compare(per1TempInfo, per2TempInfo);
 
         if(per1.isTwin() != null && per2.isTwin() != null){
             ++nonNullVals;

@@ -33,7 +33,7 @@ public class Parameter {
                 break;
             case 3: algorithm = new StrikeOut();
                 break;
-            default: error = "Bad Input for algorithm";
+            default: error = "\n\nBad Input for algorithm. Please specify an algorithm by the values (1,2, or 3) or (\"confidence\", \"score\", \"strike\")\n\n";
                 break;
         }
     }
@@ -50,7 +50,7 @@ public class Parameter {
                 break;
             case "strike": algorithm = new StrikeOut();
                 break;
-            default: error = "Bad Input for algorithm. Please specify an algorithm next time by the values (1,2, or 3) or (\"confidence\", \"score\", \"strike\")";
+            default: error = "\n\nBad Input for algorithm. Please specify an algorithm by the values (1,2, or 3) or (\"confidence\", \"score\", \"strike\")\n\n";
                 break;
         }
     }
@@ -58,17 +58,31 @@ public class Parameter {
     public void checkParams(){
         File file = new File(inputFile);
         if(!file.exists() || file.isDirectory()) {
-            error = "Input file does not exists!";
+            error = "\n\nInput file does not exists!\n\n";
             return;
         }
 
         if(outputToFile != null){
-            String outputDirectory = outputToFile.substring(0, outputToFile.lastIndexOf(File.separator));
-            File outputFile = new File(outputDirectory);
-            if(!outputFile.exists() && !outputFile.isDirectory()){
-                error = "output directory must be within an existing directory.";
+            if(outputToFile.lastIndexOf(File.separator) > -1){
+                String outputDirectory = outputToFile.substring(0, outputToFile.lastIndexOf(File.separator));
+                File outputFile = new File(outputDirectory);
+                if(!outputFile.exists() && !outputFile.isDirectory()){
+                    error = "\n\nOutput directory must be within an existing directory.\n\n";
+                }
             }
         }
+    }
+
+    public String getInputType(){
+        String inputType;
+        int index = inputFile.lastIndexOf(".");
+        if(index > 0){
+            ++index;
+            inputType = inputFile.substring(index);
+            return inputType;
+        }
+        error = "\n\nInput File needs an extension\n\n";
+        return "";
     }
 
     // Getters and Setters
@@ -111,6 +125,20 @@ public class Parameter {
 
     public void setAlgorName(String algorName) {
         this.algorName = algorName;
+        switch (algorName.toLowerCase()) {
+            case "confidence":
+                algorithm = new IdentByConfidence();
+                break;
+            case "score":
+                algorithm = new ScoreSystem();
+                break;
+            case "strike":
+                algorithm = new StrikeOut();
+                break;
+            default:
+                error = "\n\nBad Input for algorithm. Please specify an algorithm next time by the values (1,2, or 3) or (\"confidence\", \"score\", \"strike\")\n\n";
+                break;
+        }
     }
 
     public Integer getAlgorId() {
@@ -119,6 +147,16 @@ public class Parameter {
 
     public void setAlgorId(Integer algorId) {
         this.algorId = algorId;
+        switch (algorId){
+            case 1: algorithm = new IdentByConfidence();
+                break;
+            case 2: algorithm = new ScoreSystem();
+                break;
+            case 3: algorithm = new StrikeOut();
+                break;
+            default: error = "\n\nBad Input for algorithm. Please specify an algorithm next time by the values (1,2, or 3) or (\"confidence\", \"score\", \"strike\")\n\n";
+                break;
+        }
     }
 
 }

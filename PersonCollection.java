@@ -11,6 +11,7 @@ public class PersonCollection{
         person = Arrays.asList();
         match = Arrays.asList();
         IdentByConfidence identByConfidence = new IdentByConfidence();
+        algorithm = identByConfidence;
     }
 
     public PersonCollection(List<Person> person, Algorithm algorithm){
