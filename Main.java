@@ -3,33 +3,17 @@ import java.util.List;
 
 public class Main{
     public static void main(String[] args){
-        Integer algorithmInt;
-        String algoritmString;
-        Parameter parameter = new Parameter();
-
-        try {
-            algorithmInt = Integer.parseInt(args[0]);
-            parameter.setAlgorId(algorithmInt);
+        Parameter parameter = new Parameter(args);
+        if(error(parameter)){
+            return;
         }
-        catch( Exception e ) {
-            algoritmString = args[0];
-            parameter.setAlgorName(algoritmString);
-        }
-
-        parameter.setInputFile(args[1]);
-        if(args.length > 2){
-            parameter.setOutputToFile(args[2]);
-        }
-
         parameter.checkParams();
-        if(parameter.getError() != null){
-            System.out.println(parameter.getError());
+        if(error(parameter)){
             return;
         }
 
         String inputType = parameter.getInputType();
-        if(parameter.getError() != null){
-            System.out.println(parameter.getError());
+        if(error(parameter)){
             return;
         }
 
@@ -97,5 +81,13 @@ public class Main{
                 e.printStackTrace();
             }
         }
+    }
+
+    private static Boolean error(Parameter parameter){
+        if(parameter.getError() != null){
+            System.out.println(parameter.getError());
+            return true;
+        }
+        return false;
     }
 }

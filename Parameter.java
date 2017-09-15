@@ -8,22 +8,51 @@ public class Parameter {
     private String algorName;
     private Integer algorId;
     private String error;
+    private String[] args;
 
     public Parameter(){
         algorithm = new IdentByConfidence();
         inputFile = "input.json";
     }
 
-    public Parameter(String outputToFile, Algorithm algorithm, String inputFile) {
+    public Parameter(String args[]){
+        if(args.length < 2){
+            error = "Please specify arguments:\n algorithm input output\n" +
+                    "algorithm: (1,2,3) or (\"confidence\", \"score\", \"strike\")\n\n";
+            return;
+        }
+        Integer algorithmInt;
+        String algoritmString;
+        algorithm = new IdentByConfidence();
+        inputFile = "input.json";
+
+        try {
+            algorithmInt = Integer.parseInt(args[0]);
+            algorId = algorithmInt;
+        }
+        catch( Exception e ) {
+            algoritmString = args[0];
+            algorName = algoritmString;
+        }
+
+        inputFile = args[1];
+        if(args.length > 2){
+            outputToFile = args[2];
+        }
+    }
+
+    public Parameter(String outputToFile, Algorithm algorithm, String inputFile, String[] args) {
         this.outputToFile = outputToFile;
         this.algorithm = algorithm;
         this.inputFile = inputFile;
+        this.args = args;
     }
 
-    public Parameter(String outputToFile, String inputFile, Integer algorId) {
+    public Parameter(String outputToFile, String inputFile, Integer algorId, String[] args) {
         this.outputToFile = outputToFile;
         this.inputFile = inputFile;
         this.algorId = algorId;
+        this.args = args;
         algorithm = new IdentByConfidence();
 
         switch (algorId){
@@ -38,10 +67,11 @@ public class Parameter {
         }
     }
 
-    public Parameter(String outputToFile, String inputFile, String algorName) {
+    public Parameter(String outputToFile, String inputFile, String algorName, String[] args) {
         this.outputToFile = outputToFile;
         this.inputFile = inputFile;
         this.algorName = algorName;
+        this.args = args;
         algorithm = new IdentByConfidence();
         switch (algorName.toLowerCase()){
             case "confidence": algorithm = new IdentByConfidence();
